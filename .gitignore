@@ -1,0 +1,21 @@
+# IDEA
+*.idea/
+
+# python
+
+*.pyc
+build/
+
+*.__pycache__/
+db.sqlite3
+*.migrations/
+
+blog/migrations/
+comment/migrations/
+likes/migrations/
+read_statistics/migrations/
+user/migrations/
+mysite/settings.py
+gunicorn/
+cygSqlite/settings.py
+.idea/
