@@ -9,7 +9,7 @@ build/
 *.__pycache__/
 db.sqlite3
 *.migrations/
-
+*.settings.py
 blog/migrations/
 comment/migrations/
 likes/migrations/
