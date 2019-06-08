@@ -23,6 +23,7 @@ from django.conf.urls import url,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.blog_list,name="blog_list"),
+    path('blog/<int:blog_pk>', views.blog_detail, name="blog_detail"),
     path('ckeditor',include('ckeditor_uploader.urls')),
 ]
 
