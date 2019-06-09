@@ -14,8 +14,13 @@ class Blog(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated_time = models.DateTimeField(auto_now=True)
     create_month = models.CharField(max_length=50,blank=False,default=calendar.month_name[int(time.localtime().tm_mon)])
-    img_url = models.ImageField(upload_to='images',default=os.path.join(settings.MEDIA_ROOT,"images","project-"+str(random.randint(1,8))+".jpg"))  # upload_to指定图片上传的途径，如果不存在则自动创建
+    img_url = models.ImageField(upload_to='images',blank=True)  # upload_to指定图片上传的途径，如果不存在则自动创建
     def __str__(self):
         return "<Blog: %s>" % self.title
+    def getImage(self):
+        if self.img_url:
+            return self.img_url.url
+        else:
+            return os.path.join("/media/images","project-"+str(random.randint(1,8))+".jpg")
     class Meta:
         ordering = ['-created_time']
