@@ -19,3 +19,4 @@ mysite/settings.py
 gunicorn/
 cygSqlite/settings.py
 .idea/
+media/
