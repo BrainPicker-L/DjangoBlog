@@ -11,7 +11,7 @@ class Blog(models.Model):
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING,default=None)
     title = models.CharField(max_length=50)
     content = RichTextUploadingField()
-    created_time = models.DateTimeField(auto_now_add=True)
+    created_time = models.DateTimeField(auto_now_add=False)
     last_updated_time = models.DateTimeField(auto_now=True)
     create_month = models.CharField(max_length=50,blank=False,default=calendar.month_name[int(time.localtime().tm_mon)])
     img_url = models.ImageField(upload_to='images',blank=True)  # upload_to指定图片上传的途径，如果不存在则自动创建
