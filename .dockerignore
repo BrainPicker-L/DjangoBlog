@@ -1,0 +1,16 @@
+# IDEA
+*.idea/
+
+# python
+
+*.pyc
+build/
+
+*.__pycache__/
+db.sqlite3
+*.migrations/
+
+blog/migrations/
+gunicorn/
+.idea/
+
