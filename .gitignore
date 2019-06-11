@@ -20,3 +20,4 @@ gunicorn/
 cygSqlite/settings.py
 .idea/
 media/
+collected_static/
