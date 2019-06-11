@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
-from blog.models import Blog,BlogType
+from blog.models import *
 import json
-from mysite.utils import read_statistics_once_read
+from mysite.utils import *
 
 
 
@@ -34,3 +34,36 @@ def blog_detail(request, blog_pk):
     response = render(request, 'single.html', context)
     response.set_cookie(read_cookie_key,'true')
     return response
+
+
+from django.http import JsonResponse
+# Create your views here.
+
+
+def ErrResponse(code,message):
+    data = {}
+    data['status'] = 'ERROR'
+    data['code'] =code
+    data['message'] = message
+    return JsonResponse(data)
+def SuccessResponse(liked_num):
+    data = {}
+    data['status'] = 'SUCCESS'
+    data['liked_num'] = liked_num
+    return JsonResponse(data)
+
+
+
+def like_change(request):
+    # 获取数据
+    object_id = request.GET.get('object_id')
+    blog = get_object_or_404(Blog, pk=object_id)
+    ct = ContentType.objects.get_for_model(blog)
+    is_like = request.GET.get("is_like")
+    likenum = LikeNum.objects.get(content_type=ct, object_id=object_id)
+    if is_like == "true":
+        likenum.like_num +=1
+    else:
+        likenum.like_num -= 1
+    likenum.save()
+    return SuccessResponse(likenum.like_num)

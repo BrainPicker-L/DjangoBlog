@@ -30,12 +30,29 @@ class ReadNumExpandMethod():
             return 0
 
 
+
+class LikeNum(models.Model):
+    like_num = models.IntegerField(default=0)
+    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+class LikeNumExpandMethod():
+    def get_like_num(self):
+        try:
+            ct = ContentType.objects.get_for_model(self)
+            likenum = LikeNum.objects.get(content_type=ct, object_id=self.pk)
+            return likenum.like_num
+        except exceptions.ObjectDoesNotExist:
+            return 0
+
+
 class BlogType(models.Model):
     type_name = models.CharField(max_length=15)
 
     def __str__(self):
         return self.type_name
-class Blog(models.Model,ReadNumExpandMethod):
+class Blog(models.Model,ReadNumExpandMethod,LikeNumExpandMethod):
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING,default=None)
     title = models.CharField(max_length=50)
     blog_type = models.ForeignKey(BlogType, on_delete=models.DO_NOTHING,default=None)
@@ -53,6 +70,8 @@ class Blog(models.Model,ReadNumExpandMethod):
             return os.path.join("/media/images","project-"+str(random.randint(1,8))+".jpg")
     class Meta:
         ordering = ['-created_time']
+
+
 
 
 

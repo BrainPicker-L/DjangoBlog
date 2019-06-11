@@ -1,0 +1,11 @@
+
+
+div.like {
+    cursor:pointer;
+    float:left;
+}
+
+
+div.like .active{
+    color: #f22;
+}
