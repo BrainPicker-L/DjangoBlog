@@ -1,5 +1,5 @@
 certifi==2019.3.9
-Django==2.0
+Django==2.2.24
 django-ckeditor==5.4.0
 django-js-asset==1.0.0
 mysqlclient==1.4.2.post1
