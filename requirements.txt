@@ -1,4 +1,4 @@
-certifi==2019.3.9
+certifi==2022.12.7
 Django==2.0
 django-ckeditor==5.4.0
 django-js-asset==1.0.0
